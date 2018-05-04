@@ -1,5 +1,5 @@
 #################################################
-# Belly Button Biodiversity
+# Belly Button Biodiversity Flask App
 #################################################
 
 import datetime as dt
@@ -16,7 +16,7 @@ from flask import (
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func, MetaData
+from sqlalchemy import create_engine, func
 
 #################################################
 # Flask Setup
@@ -54,23 +54,24 @@ samples_df = pd.read_sql_query(query_statement, session.bind)
 query_statement = session.query(samples_metadata).order_by(samples_metadata.SAMPLEID).statement
 samples_meta_df = pd.read_sql_query(query_statement, session.bind)
 
-
-
-
-# create root route that renders index.html template which is the dashboard page
+# The root route that renders index.html template which is the dashboard page
 @app.route("/")
 def home():
     samples = samples_df.columns.tolist()[1:]
     return render_template("index.html", sampleNames=samples)
 
+# The handler for the "/names" route. returns a list of sample names/ids
 @app.route("/names")
 def showSampleNames():
     return jsonify(samples_df.columns.tolist()[1:])
 
+# The handler for the "/otu" route. Returns a list of otu descriptions
 @app.route("/otu")
 def showOtuDescriptions():
     return jsonify(otu_df['lowest_taxonomic_unit_found'].tolist())
 
+# The handler for the "/metadata/<sample>" route. Displays "Invalid sample id" if the 
+# sample given is invalid otherwise returns the json dictionaty of metadata for the given sample
 @app.route('/metadata/<sample>')
 def showMetadata(sample):
     meta_dict = "Invalid sample id"
@@ -90,7 +91,8 @@ def showMetadata(sample):
 
     return jsonify(meta_dict)
     
-
+# The handler for the '/wfreq/<sample>' route. Returns the wash frequency for the given sample
+# if it is valid or else an Invalid sample id msg
 @app.route('/wfreq/<sample>')
 def showWashingFreq(sample):
     wash_freq = "Invalid sample id"
@@ -104,6 +106,8 @@ def showWashingFreq(sample):
 
     return jsonify(wash_freq)
 
+# The handler for the '/samples/<sample>' route. Returns "Invalud Sample id" if the sample is
+# not correct, otherwise returns the sample data, otu_ids and descriptions
 @app.route('/samples/<sample>')
 def showSample(sample):
     data = "Invalid sample id"
@@ -123,9 +127,6 @@ def showSample(sample):
         data["otu_description"] = merged_df["lowest_taxonomic_unit_found"].tolist()
 
     return jsonify(data)
-
-
-
 
 
 #################################################
