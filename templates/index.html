@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Belly Button Biodiversity</title>
+  <!-- Bootstrap StyleSheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/styles.css') }}">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid header-panel">
+        <div class="row" >
+            <div class="col-md-12 bio-header">
+            </div>
+        </div>
+        <div class="row text-center" >
+            <div class="col-md-12">
+            <h1>Belly Button Biodiversiy</h1>
+            </div>
+        </div>
+                 
+        <div class="row"> <div class="col-md-12 bio-text">
+            The belly button is one of the habitats closest to us, and yet it remains relatively unexplored. 
+            In January 2011, <a href="http://robdunnlab.com" target="_blank"> Rob Dunn Lab </a> launched 
+            Belly Button Biodiversity to investigate the microbes inhabiting 
+            our navels and the factors that might influence the microscopic life calling this protected, 
+            moist patch of skin home. In addition to inspiring scientific curiosity, Belly Button Biodiversity 
+            inspired conversations about the beneficial roles microbes play in our daily lives. 
+
+            <br><br>
+
+            We analyze this biodiversity here and show our findings below. Explore and Enjoy!
+        </div></div>
+        <br>
+        <div class="row">
+            <div class="col-md-6" id="sample_select">
+                <label for="selDataset">Select a Sample:&nbsp;</label>
+                <select id="selDataset" onchange="getData(this.value)">
+                    {% for s in sampleNames %}
+                        <option value="{{ s }}">{{ s }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sample Metadata</h3>
+                    </div>
+                    <div class="panel-body">
+                        Panel content
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="pie"></div>
+            </div>
+            <div class="col-md-6" id="scrubs">
+                two
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="bubble"></div>
+            </div>
+        </div>
+
+    <!-- Javascript -->
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript"></script>
+
+    <!-- local javascript -->
+    <script src="../static/js/biodash.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript from Bootstrap-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+
+</html>
+
+

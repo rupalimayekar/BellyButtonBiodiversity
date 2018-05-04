@@ -1,0 +1,14 @@
+/********************************************************************************************/
+/* Belly Button Biodiversity      
+/* This CSS file contains all styles for the html page.
+/********************************************************************************************/
+
+.bio-header {
+    background-image: url('../images/bacteria_by_filterforgedotcom.jpg');
+    height: 100px;
+
+}
+
+.bio-text {
+  font-size: 120%;
+}
