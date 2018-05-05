@@ -3,7 +3,7 @@
 #################################################
 
 import datetime as dt
-import numpy as np
+# import numpy as np
 import pandas as pd
 
 from flask import (
@@ -13,7 +13,7 @@ from flask import (
     request,
     redirect)
 
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
@@ -133,4 +133,5 @@ def showSample(sample):
 # Run the Flask app in Debug mode
 #################################################
 if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run()
