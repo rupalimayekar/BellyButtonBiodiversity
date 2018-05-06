@@ -108,18 +108,36 @@ function updatePieBubble(newresponse) {
     console.log("Updating Plotly");
 
     // Restyle the pie chart
-    var pieElement = document.getElementById('pie');
-    Plotly.restyle(pieElement, "labels", [newresponse["otu_ids"].slice(0,11)]);
-    Plotly.restyle(pieElement, "values", [newresponse[sample].slice(0,11)]);
-    Plotly.restyle(pieElement, "text", [newresponse["otu_description"].slice(0,11)]);
+    // var data_update = [{
+    //     labels: [newresponse["otu_ids"].slice(0,11)],
+    //     values: [newresponse[sample].slice(0,11)],
+    //     text: [newresponse["otu_description"].slice(0,11)]
+    // }];
+
+    // Plotly.restyle("pie", data_update);
+
+    Plotly.restyle("pie", "labels", [newresponse["otu_ids"].slice(0,11)]);
+    Plotly.restyle("pie", "values", [newresponse[sample].slice(0,11)]);
+    Plotly.restyle("pie", "text", [newresponse["otu_description"].slice(0,11)]);
 
     // Restyle the bubble chart
-    var bubbleElement = document.getElementById("bubble");
-    Plotly.restyle(bubbleElement, "x", [newresponse["otu_ids"]]);
-    Plotly.restyle(bubbleElement, "y", [newresponse[sample]]);
-    Plotly.restyle(bubbleElement, "text", [newresponse["otu_description"]]);
-    Plotly.restyle(bubbleElement, "ids", [newresponse["otu_ids"]]);
-    Plotly.restyle(bubbleElement, "marker", [{ "size": newresponse[sample], 
+    // data_update = [{
+    //     x: newresponse["otu_ids"],
+    //     y: newresponse[sample],
+    //     text: newresponse["otu_description"],
+    //     ids: newresponse["otu_ids"],
+    //     marker: { "size": newresponse[sample], 
+    //                 "color": newresponse["otu_ids"]
+    //                 }
+    // }];
+
+    // Plotly.restyle(bubbleElement, data_update);
+
+    Plotly.restyle("bubble", "x", [newresponse["otu_ids"]]);
+    Plotly.restyle("bubble", "y", [newresponse[sample]]);
+    Plotly.restyle("bubble", "text", [newresponse["otu_description"]]);
+    Plotly.restyle("bubble", "ids", [newresponse["otu_ids"]]);
+    Plotly.restyle("bubble", "marker", [{ "size": newresponse[sample], 
                                                 "color": newresponse["otu_ids"]
                                             }]);
 }
@@ -134,25 +152,23 @@ function plotPieChart(sample, response) {
 
     // Prepare the data to plot the pie chart
     var data = [{
-        "labels": response["otu_ids"].slice(0,11), 
-        "values": response[sample].slice(0,11),
-        "text": response["otu_description"].slice(0,11),
-        "hoverinfo": "text",
-        "textinfo": "percent",
-        "name": "Howdy Pie!",
-        "type": "pie"}];
+        labels: response["otu_ids"].slice(0,11), 
+        values: response[sample].slice(0,11),
+        text: response["otu_description"].slice(0,11),
+        hoverinfo: "text",
+        textinfo: "percent",
+        name: "Distribution of microbial species",
+        type: "pie"}];
     
     // prepare the layout
     var layout = {
-        title: "PIE CHART FOR SAMPLE",
-        showLegend: true,
+        title: "Distribution of microbial species",
         height: 500,
         width: 500,
-
     };
 
     // Plot it
-    Plotly.plot('pie', data);
+    Plotly.plot('pie', data, layout);
 }
 
 /**
@@ -163,21 +179,27 @@ function plotPieChart(sample, response) {
 function plotBubbleChart(sample, response) {
     console.log("Plotting bubble chart");
     var data = [{
-        "x": response["otu_ids"],
-        "y": response[sample],
-        "mode": "markers",
-        "marker": { "size": response[sample],
+        x: response["otu_ids"],
+        y: response[sample],
+        mode: "markers",
+        marker: { "size": response[sample],
                     "color": response["otu_ids"]
                 },
-        "fill": "toitself",
-        "text": response["otu_description"],
-        "hoverinfo": "text",
-        "name": "Howdy Bubble!",
-        "ids": response["otu_ids"],
-        "type": "scatter"
+        fill: "toitself",
+        text: response["otu_description"],
+        hoverinfo: "text",
+        name: "Sample values vs OTU IDs",
+        ids: response["otu_ids"],
+        type: "scatter"
     }];
 
-    Plotly.plot('bubble', data);
+    var layout = {
+        title: "Sample values vs OTU IDs",
+        xaxis: { title: "OTU Ids"},
+        yaxis: {title: "Sample values"}
+    };
+
+    Plotly.plot('bubble', data, layout);
 }
 
 /**

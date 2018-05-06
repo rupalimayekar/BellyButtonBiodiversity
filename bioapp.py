@@ -3,8 +3,8 @@
 #################################################
 
 import datetime as dt
-# import numpy as np
 import pandas as pd
+import os
 
 from flask import (
     Flask,
@@ -13,7 +13,6 @@ from flask import (
     request,
     redirect)
 
-# from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
@@ -26,7 +25,8 @@ app = Flask(__name__)
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///data/belly_button_biodiversity.sqlite")
+db_uri = os.getenv("DATABASE_URI", "sqlite:///data/belly_button_biodiversity.sqlite")
+engine = create_engine(db_uri)
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -130,8 +130,8 @@ def showSample(sample):
 
 
 #################################################
-# Run the Flask app in Debug mode
+# Run the Flask app
 #################################################
 if __name__ == "__main__":
-    #app.run(debug=True)
-    app.run()
+    app.run(debug=True)
+    # app.run()
