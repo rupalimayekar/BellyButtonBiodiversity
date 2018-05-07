@@ -9,12 +9,11 @@ This project showcases some interactive visualizations on Belly Button Biodivers
 * FInally we use the Plotly.js javascript library to display our interractive visualizations on the HTML dashboard page. The HTML page uses bootstrap components and styles for responsiveness.
 * We have deployed our Flask application on Heroku. Take a look at the link in the section below.
 
+## Working Application on Heroku
+We have deployed our Flask Applicaiton on Heroku. To take a look at our running applicaiton, take a look at [Belly Button Biodiversity](https://tranquil-springs-59548.herokuapp.com/)
 
 ## Belly Button Biodiversity Dashboard
 Below is the snapshot of the Belly Button Biodiversity Dashboard page.
-
-## Working Application on Heroku
-We have deployed our Flask Applicaiton on Heroku. To take a look at our running applicaiton, take a look at [Belly Button Biodiversity](https://tranquil-springs-59548.herokuapp.com/)
 
 ![ScreenShot1](images/bio_metadata.png)
 ![ScreenShot2](images/bio_pie.png)
