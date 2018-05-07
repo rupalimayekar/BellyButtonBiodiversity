@@ -163,8 +163,8 @@ function plotPieChart(sample, response) {
     // prepare the layout
     var layout = {
         title: "Distribution of microbial species",
-        height: 500,
-        width: 500,
+        height: 450,
+        width: 450,
     };
 
     // Plot it
@@ -196,7 +196,9 @@ function plotBubbleChart(sample, response) {
     var layout = {
         title: "Sample values vs OTU IDs",
         xaxis: { title: "OTU Ids"},
-        yaxis: {title: "Sample values"}
+        yaxis: {title: "Sample values"},
+        height: 500,
+        width: 1000
     };
 
     Plotly.plot('bubble', data, layout);
@@ -267,8 +269,8 @@ function plotScrubsChart(sample, response) {
             }
             }],
         title: 'Scrubs per Week',
-        height: 500,
-        width: 500,
+        height: 450,
+        width: 450,
         xaxis: {zeroline:false, showticklabels:false,
                 showgrid: false, range: [-1, 1]},
         yaxis: {zeroline:false, showticklabels:false,

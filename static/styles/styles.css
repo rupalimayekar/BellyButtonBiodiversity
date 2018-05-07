@@ -12,3 +12,11 @@
 .bio-text {
   font-size: 120%;
 }
+
+.panel-color {
+  background-color: lightgoldenrodyellow
+}
+
+.panel-header-color {
+  background-color: rgb(224, 224, 116)
+}
